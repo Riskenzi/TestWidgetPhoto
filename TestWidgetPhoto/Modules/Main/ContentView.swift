@@ -29,21 +29,24 @@ struct ContentView: View {
     }
     
     var gearButton: some View {
+
         Button(action: {
             showSettingsView.toggle()
         }) {
-            Image(systemName: "gear")
+            Text("Settings").font(.system(size: 15))
         }
     }
     
     var applyButton: some View {
-        Button("Apply",  action: {
+        Button(  action: {
           
             isEditMode.toggle()
             
             PhotoStorageManager.shared.savePhotos(images: photos)
             WidgetCenter.shared.reloadAllTimelines()
-        })
+        }) {
+            Text("Done").font(.system(size: 15))
+        }
     }
     
     var addImageButton: some View {
@@ -51,9 +54,8 @@ struct ContentView: View {
             self.showCaptureImageView.toggle()
         })
         {
-            Image(systemName: "plus.circle")
-                .font(.largeTitle)
-                .padding()
+           
+            Image.init("add_image").font(.largeTitle).padding()
         }
     }
     
@@ -79,7 +81,7 @@ struct ContentView: View {
             NavigationView {
                     ScrollView {
                             VStack {
-                                LazyVGrid(columns: layout, spacing: 20) {
+                                LazyVGrid(columns: layout, spacing: 50) {
                                     ForEach(photos) { item in
                                         PhotoViewItem(image: item.image!,
                                                       editMode: $isEditMode,
@@ -91,13 +93,15 @@ struct ContentView: View {
                                 .padding(.horizontal)
                                 
                                 addImageButton
-                            }.padding(.top, 20)
+                            }.padding(.top, 50)
                     }
-                    .navigationBarTitle("Photo Widget", displayMode: .inline)
+                    .navigationBarTitle("Widget Content", displayMode: .large)
                     .navigationBarItems(leading:
-                                            Button("Edit", action: {
+                                            Button( action: {
                                                 self.isEditMode.toggle()
-                                            }),
+                                            }){
+                                                Text("Delete Mode").font(.system(size: 15))
+                                            },
                                         trailing: navItems())
             }
             

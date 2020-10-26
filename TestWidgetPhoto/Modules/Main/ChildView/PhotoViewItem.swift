@@ -28,11 +28,11 @@ struct PhotoViewItem: View, Identifiable {
                 Button(action: {
                     self.deleteAction(self)
                 }) {
-                    Image(systemName: "minus.circle.fill").font(.largeTitle)
+                    Image.init("delete_icon").font(.largeTitle).padding()
                 }
                 .padding()
                 .buttonStyle(CustomButton(fadeOnPress: false))
-                .foregroundColor(.red)
+                .foregroundColor(.black)
                 .opacity(0.5)
                 Spacer()
             }.frame(maxWidth: .infinity, alignment:.leading)

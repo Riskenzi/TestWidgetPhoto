@@ -64,7 +64,7 @@ struct WidgetPhotosEntryView : View {
     var body: some View {
         VStack {
             if entry.photo.imageFileName == nil {
-                Image("Placeholder")
+                Image("placeholder")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .mask(

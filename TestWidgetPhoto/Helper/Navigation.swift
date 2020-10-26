@@ -10,13 +10,13 @@ import UIKit
 
 class Navigation:NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    @Binding var isCoordinatorShown: Bool
+    @Binding var isNavigationActive: Bool
     
     var imageSelected: (Image, String?) -> Void
 
     init(isShown: Binding<Bool>, imageSelected: @escaping (Image, String?) -> Void) {
         
-        _isCoordinatorShown = isShown
+        _isNavigationActive = isShown
         self.imageSelected = imageSelected
     }
     
@@ -31,11 +31,11 @@ class Navigation:NSObject, UINavigationControllerDelegate, UIImagePickerControll
         PhotoStorageManager.shared.storeImageData(data:data, for: fileName!)
         self.imageSelected(Image(uiImage: unwrapImage), fileName)
         
-       isCoordinatorShown = false
+        isNavigationActive = false
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-       isCoordinatorShown = false
+        isNavigationActive = false
     }
     
 }
