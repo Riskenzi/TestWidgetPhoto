@@ -28,7 +28,7 @@ struct ContentView: View {
         }
     }
     
-    var gearButton: some View {
+    var settingButton: some View {
 
         Button(action: {
             showSettingsView.toggle()
@@ -37,7 +37,7 @@ struct ContentView: View {
         }
     }
     
-    var applyButton: some View {
+    var doneButton: some View {
         Button(  action: {
           
             isEditMode.toggle()
@@ -63,14 +63,14 @@ struct ContentView: View {
     func navItems() -> some View {
         return Group {
             if self.isEditMode {
-                applyButton
+                doneButton
             }
             else {
                 NavigationLink(
                     destination: SettingsView(refreshInterval: $refreshInterval),
                     isActive: $showSettingsView,
                     label: {
-                        gearButton
+                        settingButton
                     })
             }
         }
@@ -117,9 +117,6 @@ struct ContentView: View {
                 }
             }
         }
-        
-        
-        
     }
     
 }
